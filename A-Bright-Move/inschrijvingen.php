@@ -1,14 +1,20 @@
 <?php	
-	$server = "localhost"; 
-	$user = "root";	
-	$wachtwoord = "root";
-	$database = "a_bright_move";
-	$query = "SELECT leden.lidnr, leden.voornaam, leden.achternaam, pakketten.pakket, pakketten.datum, leden.email, leden.telefoonnummer, leden.voornaamOuder, leden.achternaamOuder FROM leden INNER JOIN pakketten ON leden.lidnr=pakketten.lidnr ORDER BY lidnr;";
+session_start();
 
-	$db = mysql_connect($server, $user, $wachtwoord);
-	mysql_select_db($database);
-	$resultaat = mysql_query($query, $db);
-	mysql_close($db);
+$server = "localhost"; 
+$user = "root";	
+$wachtwoord = "root";
+$database = "a_bright_move";
+$query = "SELECT leden.lidnr, leden.voornaam, leden.achternaam, pakketten.pakket, pakketten.datum, leden.email, leden.telefoonnummer, leden.voornaamOuder, leden.achternaamOuder FROM leden INNER JOIN pakketten ON leden.lidnr=pakketten.lidnr ORDER BY lidnr;";
+
+$db = mysql_connect($server, $user, $wachtwoord);
+mysql_select_db($database);
+$resultaat = mysql_query($query, $db);
+mysql_close($db);
+
+if(!isset($_SESSION['account_id'])){
+	?><script>window.location = "login.html"</script><?php
+}
 ?>
 <html lang="nl-nl">
 <head>
