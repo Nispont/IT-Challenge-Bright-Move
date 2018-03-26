@@ -1,4 +1,74 @@
-<!DOCTYPE html>
+<?php
+if(isset($_POST['email'])) {
+ 
+    // EDIT THE 2 LINES BELOW AS REQUIRED
+    $email_to = "nigelverhoek@newman.nl";
+    $email_subject = "Bijles aanvraag - Website";
+ 
+    function died($error) {
+        // your error code can go here
+        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
+        echo "These errors appear below.<br /><br />";
+        echo $error."<br /><br />";
+        echo "Please go back and fix these errors.<br /><br />";
+        die();
+    }
+ 
+ 
+    // validation expected data exists
+    if(!isset($_POST['name']) ||
+        !isset($_POST['email']) ||
+        !isset($_POST['comments'])) {
+        died('Er blijkt een probleem te zijn met de door u ingevulde waarden.');       
+    }
+ 
+ 
+    $name = $_POST['name']; // required
+    $email_from = $_POST['email']; // required
+    $comments = $_POST['comments']; // required
+ 
+    $error_message = "";
+    $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+ 
+  if(!preg_match($email_exp,$email_from)) {
+    $error_message .= 'Het ingevulde e-mail adres is ongeldig.<br />';
+  }
+ 
+    $string_exp = "/^[A-Za-z .'-]+$/";
+ 
+  if(!preg_match($string_exp,$name)) {
+    $error_message .= 'De ingevulde naam is ongeldig.<br />';
+  }
+ 
+  if(strlen($comments) < 2) {
+    $error_message .= 'Het ingevulde bericht is ongeldig.<br />';
+  }
+ 
+  if(strlen($error_message) > 0) {
+    died($error_message);
+  }
+ 
+    $email_message = "Hieronder de waarden van het contactformulier.\n\n";
+ 
+     
+    function clean_string($string) {
+      $bad = array("content-type","bcc:","to:","cc:","href");
+      return str_replace($bad,"",$string);
+    }
+ 
+     
+ 
+    $email_message .= "Naam: ".clean_string($name)."\n";
+    $email_message .= "E-mail: ".clean_string($email_from)."\n";
+    $email_message .= "Bericht: ".clean_string($comments)."\n";
+ 
+// create email headers
+$headers = 'From: '.$email_from."\r\n".
+'Reply-To: '.$email_from."\r\n" .
+'X-Mailer: PHP/' . phpversion();
+mail($email_to, $email_subject, $email_message, $headers);  
+?>
+
 <html lang="nl-nl">
 <head>
   <title>Jos Nous - Educatie</title>
@@ -8,9 +78,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,600i,700" rel="stylesheet">
-
-
+  <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
   <style>
   body {
       font: 400 15px cabin, sans-serif;
@@ -39,7 +107,7 @@
 	  background-repeat: no-repeat;
       background-color: #92aac7;
       color: #fff;
-	  height: 100vh;
+	  height: 30vh;
       font-family: cabin, sans-serif;
   }
   .container-fluid {
@@ -207,6 +275,8 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
 <nav id="add-transparent" class="navbar navbar-default navbar-fixed-top transparent">
   <div class="container">
     <div class="navbar-header">
@@ -227,92 +297,12 @@
   </div>
 </nav>
 
-<div class="jumbotron text-center">
-	<span style="flex:1; align-self:center;;">
-	    <h1 style="color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Jos Nous</h1>
-	    <h3 style="color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Educatie & Begeleiding</h3>
-		<p style="color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Extra goed voorbereid voor het Voortgezet Onderwijs</p>
-	</span>  
-</div>
+<div class="jumbotron text-center"></div>
 
-<!-- Container (Over) -->
-<div id="about" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h4>Engels in het lager onderwijs</h4>
-      <p>Een goede basis leggen en taalvaardigheden opbouwen. Dat wil ik bereiken tijdens een les Engels. De bouwstenen zijn woordenschat en kennis van de Engelse grammatica; het eindresultaat is een verbetering van accuratesse en de taalvaardigheden: lezen, kijken en luisteren, schrijven, spreken. Ik streef naar een gezonde mix van geconcentreerd zelfstandig werken en activerende samenwerkingsvormen.<br></p>
-      <br><a href="#contact"><button class="btn btn-default btn-lg">Contact Opnemen</button></a>
-    </div>
-    <div class="col-sm-4">
-       <img height="500px" src="img/Jos-Nous.png" class="slideanim">
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-        <img src="img/jack.png" class="slideanim" style="border-radius: 100%">
-    </div>
-    <div class="col-sm-8">
-        <h4>Waarom extra Engelse lessen op de basisschool?</h4>
-        <ul>
-            <li>Het biedt een extra uitdaging voor gemotiveerde kinderen.</li>
-
-<li>Jonge kinderen pikken een taal snel op.</li>
-
-<li>Met een beter niveau kan een kind met meer vertrouwen de overstap maken naar het Voortgezet Onderwijs én Tweetaling Voortgezet Onderwijs.</li>
-
-<li>Engels is een kernvak op de middelbare school en speelt in toenemende mate een rol van belang bij vervolgstudies.</li>
-    </ul>
-    </div>
-  </div>
-</div>
-
-<div id="aanbod" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-7">
-      <h4>Waarom extra Engelse lessen op de basisschool?</h4>
-        <ul>
-			<li>Les van een docent in het tweetalig voortgezet onderwijs.</li>
-            <li>Lessen van een uur.</li>
-			<li>Na schooltijd met even tijd voor ontspanning.</li>
-			<li>Groepjes van 8 tot 12 leerlingen</li>
-    </ul>
-      <br><a href="#contact"><button class="btn btn-default btn-lg">Contact Opnemen</button></a>
-    </div>
-    <div class="col-sm-4">
-       <img height="400px" src="img/language.jpg" class="slideanim">
-    </div>
-  </div>
-</div>
-
-<div id="contact" class="container-fluid bg-grey">
-  <h2 class="text-center">CONTACT</h2>
-  <div class="row">
-    <div class="col-sm-5">
-      <p><span class="glyphicon glyphicon-phone"></span>06-45322501</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> info@abrightmove.nl</p>
-    </div>
-    <div class="col-sm-7 slideanim">
-		<form name="contactform" method="post" action="index-contact.php">
-		  <div class="row">
-			<div class="col-sm-6 form-group">
-			  <input class="form-control" id="name" name="name" placeholder="Naam" type="text" required>
-			</div>
-			<div class="col-sm-6 form-group">
-			  <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-			</div>
-		  </div>
-		  <textarea class="form-control" id="comments" name="comments" placeholder="Opmerkingen" rows="5"></textarea><br>
-		  <div class="row">
-			<div class="col-sm-12 form-group">
-			  <button class="btn btn-default pull-right" type="submit">Verstuur</button>
-			</div>
-		  </div>
-		</form>
-    </div>
-  </div>
+<div class="container-fluid text-center">
+	<h2>Bedankt voor je contactaanvraag</h2>
+	<p>We nemen zo snel mogelijk contact met je op.</p>
+	<p><a href="index.html">&laquo; Terug naar de home pagina</a></p>
 </div>
 
 <footer class="container-fluid text-center">
@@ -320,56 +310,8 @@
 	<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());
 	</script>, Jos Nous - Sport | Begeleiding | Educatie <br>RAMMN Development
 </footer>
-
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
-  $("#about a, .navbar a, footer a[href='#myPage']").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-  
-  $(window).scroll(function() {
-    $(".slideanim").each(function(){
-      var pos = $(this).offset().top;
-
-      var winTop = $(window).scrollTop();
-        if (pos < winTop + 600) {
-          $(this).addClass("slide");
-        }
-    });
-  });
-})
-</script>
-<script>
-window.onscroll = function() {transparentMenu()};
-
-var nav = document.getElementById("add-transparent");
-var transparent = nav.offsetTop;
-
-function transparentMenu() {
-  if (window.pageYOffset <= transparent) {
-	nav.classList.add("transparent");
-  } else {
-	nav.classList.remove("transparent");
-  }
+ 
+<?php
+ 
 }
-</script>
-</body>
-</html>
+?>
