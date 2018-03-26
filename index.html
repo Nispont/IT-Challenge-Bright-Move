@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			header{
+				padding-top: 1px;
+				height: 11.9vh;
+				text-align: center;
+				background-color: #34495e;
+				color: white;
+			}
+			h1{
+				text-transform: uppercase;
+				font-weight: 600;
+				font-family: 'Crete Round', serif;
+				margin-bottom: 0;
+			}
+			h2{
+				font-family: 'Cabin', sans-serif;
+				margin-top: 0;
+			}
+			h3{
+				margin-top: 0;
+				margin-bottom: .5em;
+				font-size: 3em;
+			}
+			p{
+				margin-top: 0;
+			}
+			section{
+				padding: 10px;
+				position: relative;
+				top: 90%;
+				margin: 0 auto;
+				background-color: #ffffff;
+				color: #000000;
+				font-family: 'Cabin', sans serif;
+				text-align: center;
+				width: 80%;
+				max-width: 350px;
+				box-shadow: 0 1px 2px rgba(0,0,0,.1);
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+				transition: top 1s;
+			}
+			.panel{
+				width: 50%;
+				height: 88vh;
+				float: left;
+				opacity: 0.8;
+				transition: opacity 1s;
+			}
+			.panel:hover{
+				opacity: 1;
+				transition: opacity 1s;
+			}
+			.panel:hover > section{
+				top: 60%;
+				transition: top 1s;
+			}
+			#sport{
+				background-image: url(img/sport.jpg);
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			#educatie{
+				background-image: url(img/london.jpg);
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Jos Nous</h1>
+			<h2>Sport | Begeleiding | Educatie</h2>
+		</header>
+		<a href="/a-bright-move">
+			<div id="sport" class="panel">
+				<section>
+					<h3>A Bright Move</h3>
+					<p>A Bright Move biedt professionele sportbegeleiding met gevoel voor de juiste individuele accenten.</p>
+				</section>
+			</div>
+		</a>
+		<a href="/educatie">
+			<div id="educatie" class="panel">
+				<section>
+					<h3>Bijles Engels</h3>
+					<p>Engelse les na school van een professionele docent van het voortgezet onderwijs.</p>
+				</section>
+			</div>
+		</a>
+	</body>
+</html>

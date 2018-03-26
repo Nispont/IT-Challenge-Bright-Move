@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="nl-nl">
+<head>
+  <title>A Bright Move</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
+  <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+  <style>
+  body {
+      font: 400 15px cabin, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+  }
+  h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-family: 'Crete Round', serif;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }  
+  .jumbotron {
+	  display: flex;
+	  background-image: url("img/jumbotron.png");
+	  background-size: cover;
+	  background-repeat: no-repeat;
+      background-color: #2ecc71;
+      color: #fff;
+	  height: 100vh;
+      font-family: cabin, sans-serif;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .logo-small {
+      color: #f4511e;
+      font-size: 50px;
+  }
+  .logo {
+      color: #2ecc71;
+      font-size: 200px;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+  }
+  .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  .panel {
+      border: 1px solid #27ae60; 
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid #27ae60;
+      background-color: #fff !important;
+      color: #27ae60;
+  }
+  .panel-heading {
+      color: #fff !important;
+      background-color: #27ae60 !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 32px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+  }
+  .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #27ae60;
+      color: #fff;
+  }
+  .transparent{
+	opacity: 0;
+	transition: opacity 0.25s;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: #27ae60;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Cabin, sans-serif;
+	  transition: opacity 0.25s;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+      
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #27ae60 !important;
+      background-color: #fff !important;
+      transition: color 0.25s;
+      transition: background-color 0.25s;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  #about{
+      padding-bottom: 0;
+  } 
+  footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+        font-size: 150px;
+    }
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav id="add-transparent" class="navbar navbar-default navbar-fixed-top transparent">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">A Bright Move</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">OVER</a></li>
+        <li><a href="#aanbod">AANBOD</a></li>
+        <li><a href="#tarieven">TARIEVEN</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+	<span style="flex:1; align-self:center;">
+		<img src="img/A-Bright-Move-logo.svg">
+		<p>Professionele sportbegeleiding met gevoel voor de juiste individuele accenten</p>
+	</span>  
+</div>
+
+<!-- Container (Over) -->
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Jos Nous</h2><br>
+      <h4>Resultaatgericht trainen en samenwerken in een prettige sfeer, daar sta ik voor!</h4><br>
+      <p>Na afronding van de opleiding tot leraar Lichamelijke Opvoeding aan Fontys Sporthogeschool heb ik me gespecialiseerd in Personal Training. Bewustwording en gezond blijven bewegen staan daarbij centraal. Ik geef looptraining en krachttraining (fitnesszaal en buitenlocaties) aan particulieren en bedrijven, maak trainingsschema’s en volg regelmatig scholing. Naast Personal Trainer en sportbegeleider bij mijn bedrijf A Bright Move ben ik werkzaam als leraar op een middelbare school in Breda.</p>
+      <br><a href="#contact"><button class="btn btn-default btn-lg">Contact Opnemen</button></a>
+    </div>
+    <div class="col-sm-4">
+      <span class="slideanim"><img height="500px" src="img/Jos-Nous.png"></span>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="img/small-group-jogging.png" class="slideanim" style="border-radius: 100%">
+    </div>
+    <div class="col-sm-8">
+      <h2>A Bright Move</h2><br>
+      <h4>A Bright Move biedt professionele sportbegeleiding met gevoel voor de juiste individuele accenten.</h4><br>
+      <p>Met een zeer compleet Sport- en Inspanningsonderzoek en een zorgvuldige nabespreking met een inhoudelijke onderbouwing, krijg je een goede indicatie van je fysieke conditie en belastbaarheid. Op basis van de onderzoeksresultaten en jouw doelstellingen maak ik een trainingsschema waarmee je effectief, verantwoord en bewust gaat trainen. Deze planmatige aanpak biedt kwaliteit en verkleint tevens de kans op blessures, waardoor je niet zo snel een terugval krijgt en dat werkt motiverend. Het verschil zit 'm in de details.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Container (Aanbod) -->
+<div id="aanbod" class="container-fluid text-center">
+  <h2>AANBOD</h2>
+  <p><i>A Bright Move</i> biedt trainingen op elk gewenst niveau voor zowel individuen (Personal Training) als groepen (Small Group Training). In samenwerking met partners biedt <i>A Bright Move</i> <a href="img/folder-bedrijven.pdf" target="_blank">Vitaliteitsprogramma's voor bedrijven</a>. De resultaten van het Sport- en Inspanningsonderzoek zijn het uitgangspunt van jouw persoonlijke trainingsschema.</p>
+  <br>
+</div>
+
+<div id="tarieven" class="container-fluid">
+  <div class="text-center">
+    <h2>PERSONAL TRAINING</h2>
+  </div>
+  <div class="row slideanim">
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Losse Training</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>1x</strong> Personal Training</p>
+		  <p>Professionele Begeleiding</p>
+          <p> </p>
+        </div>
+        <div class="panel-footer">
+          <h3>€55,-</h3>
+          <button class="btn btn-lg">Aanmelden</button>
+        </div>
+      </div>      
+    </div>     
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Sportimpuls pakket</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>3x</strong> Personal Training</p>
+          <p>Professionele Begeleiding</p>
+		  <p>Outdoor</p>
+        </div>
+        <div class="panel-footer">
+          <h3>€150,-</h3>
+          <button class="btn btn-lg">Aanmelden</button>
+        </div>
+      </div>      
+    </div>       
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Wellness sportpakket</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>12x</strong> Personal Training</p>
+          <p>Inclusief Sport-en Inspannings Onderzoek</p>
+          <p>Persoonlijk Trainingsschema</p>
+        </div>
+        <div class="panel-footer">
+          <h3>€650,-</h3>
+          <button class="btn btn-lg">Aanmelden</button>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="text-center">
+	<h2>GROEPSTRAINING</h2>
+  </div>
+  <div class="row slideanim">
+    <div class="col-sm-6 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Small Group Training</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>1x</strong> Personal Training</p>
+		  <p>t/m <strong>4</strong> Personen</p>
+		  <p>Professionele Begeleiding</p>
+          <p></p>
+        </div>
+        <div class="panel-footer">
+          <h3>€60,-</h3>
+          <button class="btn btn-lg">Aanmelden</button>
+        </div>
+      </div>      
+    </div>     
+    <div class="col-sm-6 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Business Vitality</h1>
+        </div>
+        <div class="panel-body">
+          <p>Actieve en Gezonde Teambuilding</p>
+          <p>Professionele Begeleiding</p>
+		  <p> </p>
+        </div>
+        <div class="panel-footer">
+          <h3>Prijs op aanvraag</h3>
+          <button class="btn btn-lg">Aanmelden</button>
+        </div>
+      </div>      
+    </div>       
+  </div>
+</div>
+
+<div id="contact" class="container-fluid bg-grey">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p><span class="glyphicon glyphicon-phone"></span>06-45322501</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> info@abrightmove.nl</p>
+    </div>
+    <div class="col-sm-7 slideanim">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Naam" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comment" placeholder="Opmerkingen" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" type="submit">Verstuur</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+&copy; 2017
+<script>new Date().getFullYear()>2017&&document.write("- "+new Date().getFullYear());</script>
+, A Bright Move by Jos Nous <br>RAMMN Development
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $("#about a, .navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+<script>
+window.onscroll = function() {transparentMenu()};
+
+var nav = document.getElementById("add-transparent");
+var transparent = nav.offsetTop;
+
+function transparentMenu() {
+  if (window.pageYOffset <= transparent) {
+	nav.classList.add("transparent");
+  } else {
+	nav.classList.remove("transparent");
+  }
+}
+</script>
+</body>
+</html>
